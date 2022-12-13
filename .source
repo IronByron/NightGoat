@@ -1,0 +1,27 @@
+# System updates:
+sudo apt update && sudo apt --yes full-upgrade
+sudo apt update && sudo apt --yes dist-upgrade
+sudo apt update && sudo apt --yes autoremove --purge && sudo apt autoclean --yes
+sudo snap refresh
+sudo do-release-upgrade
+sudo apt update && sudo apt install --yes curl zsh git
+
+# Microsoft Repos:
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" >> /etc/apt/sources.list.d/microsoft.list'
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/code stable main" >> /etc/apt/sources.list.d/microsoft.list'
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" >> /etc/apt/sources.list.d/microsoft.list'
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-kinetic-prod kinetic main" >> /etc/apt/sources.list.d/microsoft.list'
+#deb [arch=amd64] https://packages.microsoft.com/repos/code stable main
+#deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main
+#deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main
+#deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-kinetic-prod kinetic main
+sudo rm microsoft.gpg
+
+# Microsoft installs:
+sudo apt update && sudo apt install --yes microsoft-edge-stable code teams
+
+curl -Lo ~/Downloads/powershell_7.3.0-1.deb_amd64.deb https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell_7.3.0-1.deb_amd64.deb
+sudo apt install --yes ~/Downloads/powershell_7.3.0-1.deb_amd64.deb
+rm ~/Downloads/powershell_7.3.0-1.deb_amd64.deb
